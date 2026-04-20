@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Teacher Dashboard</title>
+</head>
+<body>
+
+<h1>Teacher Dashboard</h1>
+
+<h2>My Assignments</h2>
+
+<table border="1">
+    <tr>
+        <th>Class</th>
+        <th>Subject</th>
+    </tr>
+
+    <tr th:each="a : ${assignments}">
+        <td th:text="${a.classRoom.name}"></td>
+        <td th:text="${a.subject.name}"></td>
+    </tr>
+</table>
+
+<hr>
+
+<h2>Students (Read Only)</h2>
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Roll No</th>
+    </tr>
+
+    <tr th:each="s : ${students}">
+        <td th:text="${s.name}"></td>
+        <td th:text="${s.rollNumber}"></td>
+    </tr>
+</table>
+
+<hr>
+
+<h2>Attendance (View Only)</h2>
+
+<table border="1">
+    <tr>
+        <th>Student</th>
+        <th>Date</th>
+        <th>Status</th>
+    </tr>
+
+    <tr th:each="att : ${attendance}">
+        <td th:text="${att.student.name}"></td>
+        <td th:text="${att.date}"></td>
+        <td th:text="${att.status}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

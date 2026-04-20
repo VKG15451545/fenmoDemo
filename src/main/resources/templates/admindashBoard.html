@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard</title>
+</head>
+<body>
+
+<h1>Admin Dashboard</h1>
+
+<hr>
+
+<!-- SCHOOL CREATION -->
+<h2>Add School</h2>
+<form th:action="@{/attendanceManagement/addSchool}" method="post">
+    Name: <input type="text" name="schoolName"><br>
+    Reg No: <input type="text" name="registrationNumber"><br>
+    Address:<br>
+    line1:<input type="text" name="addressDto.line1"><br>
+    line2:<input type="text" name="addressDto.line2"><br>
+    City:<input type="text" name="addressDto.city"><br>
+    country:<input type="text" name="addressDto.country"><br>
+    district:<input type="text" name="addressDto.district"><br>
+    pincode:<input type="text" name="addressDto.pincode"><br>
+    state:<input type="text" name="addressDto.state"><br>
+    <button type="submit">Add School</button>
+    <input type="hidden" name="userTypeId" th:value="${userTypeId}">
+</form>
+
+<hr>
+
+<!-- TEACHER CREATION -->
+<h2>Add Teacher</h2>
+<form action="/admin/teacher" method="post">
+
+    Name: <input type="text" name="name"><br>
+    Email: <input type="text" name="email"><br>
+    Phone: <input type="text" name="phoneNumber"><br>
+    Address: <input type="text" name="address"><br>
+
+    School ID:
+    <label>Select School:</label>
+    <select name="schoolId">
+        <option value="" disabled selected>Select school</option>
+
+        <option th:each="school : ${schools}"
+                th:value="${school.id}"
+                th:text="${school.name}">
+        </option>
+
+    </select>
+
+    <button type="submit">Add Teacher</button>
+</form>
+
+<hr>
+
+<!-- STUDENT CREATION -->
+<h2>Add Student</h2>
+<form action="/admin/student" method="post">
+
+    Name: <input type="text" name="name"><br>
+    Roll No: <input type="text" name="rollNumber"><br>
+    Email: <input type="text" name="email"><br>
+    Phone: <input type="text" name="phoneNumber"><br>
+    Address: <input type="text" name="address"><br>
+    Class: <input type="text" name="currentClass"><br>
+
+    School ID: <input type="number" name="schoolId"><br>
+
+    <button type="submit">Add Student</button>
+</form>
+
+</body>
+</html>

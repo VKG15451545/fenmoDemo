@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+</head>
+<body>
+
+<h2>Login</h2>
+<p th:text="${success}" style="color:green;"></p>
+<form th:action="@{/attendanceManagement/loggedInUser}" method="post">
+
+    <!-- ENUM DROPDOWN -->
+    <label>Login As:</label>
+    <select name="userTypeId" id="roleSelect" onchange="toggleFields()">
+
+        <option th:each="r: ${T(com.example.fenmoDemo.enums.EnumUserType).values()}"
+                th:value="${r.getId()}"
+                th:text="${r.getName()}">
+        </option>
+
+    </select>
+
+    <br><br>
+
+    <!-- EMAIL (ONLY TEACHER/STUDENT) -->
+    <div id="emailDiv">
+        <label>Email:</label>
+        <input type="text" name="email"/>
+    </div>
+
+    <br>
+
+    <!-- PASSWORD (ONLY ADMIN) -->
+    <div id="passwordDiv">
+        <label>Password:</label>
+        <input type="password" name="adminPassword"/>
+    </div>
+
+    <br>
+
+    <button type="submit">Login</button>
+
+</form>
+
+<p th:text="${error}" style="color:red;"></p>
+
+<script th:inline="javascript">
+
+    let ADMIN_ID = [[${T(com.example.fenmoDemo.enums.EnumUserType).ADMIN.id}]];
+
+</script>
+<script>
+    function toggleFields() {
+    let role = document.getElementById("roleSelect").value;
+
+    let emailDiv = document.getElementById("emailDiv");
+    let passwordDiv = document.getElementById("passwordDiv");
+
+    if (role ==  ADMIN_ID) {
+    emailDiv.style.display = "none";
+    passwordDiv.style.display = "block";
+    } else {
+    emailDiv.style.display = "block";
+    passwordDiv.style.display = "none";
+    }
+    }
+
+    window.onload = toggleFields;
+</script>
+
+</body>
+</html>

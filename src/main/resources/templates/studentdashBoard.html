@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student Dashboard</title>
+</head>
+<body>
+
+<h1>Student Dashboard</h1>
+
+<h2>My Attendance</h2>
+
+<table border="1">
+    <tr>
+        <th>Date</th>
+        <th>Subject</th>
+        <th>Status</th>
+    </tr>
+
+    <tr th:each="a : ${attendance}">
+        <td th:text="${a.date}"></td>
+        <td th:text="${a.assignment.subject.name}"></td>
+        <td th:text="${a.status}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
