@@ -44,7 +44,7 @@ public class AdminController {
         EnumUserType enumUserType = EnumUserType.getEnumUserTypeById(userTypeId);
 
         if(enumUserType.getName().equals(EnumUserType.ADMIN.getName())){
-            if(adminPassword.isBlank() || email.isBlank() || !email.equals(finalAdminUsername) || !adminPassword.equals(finalAdminPassword)){
+            if(adminPassword.isBlank() || email.isBlank() || !adminPassword.equals(finalAdminPassword)){
                 redirectAttributes.addFlashAttribute("error","invalid credential");
                 return "redirect:/attendanceManagement";
             }
@@ -105,7 +105,6 @@ public class AdminController {
             redirectAttributes.addFlashAttribute("success","School CreatedSuccessFully");
         }
         redirectAttributes.addAttribute("userTypeId",EnumUserType.ADMIN.getId());
-        redirectAttributes.addAttribute("email",finalAdminUsername);
         redirectAttributes.addAttribute("adminPassword",finalAdminPassword);
         return "redirect:/attendanceManagement/loggedInUser";
     }
